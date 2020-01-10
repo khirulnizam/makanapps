@@ -42,7 +42,9 @@ class InsertPage extends StatelessWidget{
               onPressed: () async {
                 //auto-id provided by firebase
                 await db.collection('makanplace')
-                .add({'name': _name.text,'price': _price.text,'votes': _votes.text}
+                .add({'name': _name.text,
+                  'price': _price.text,
+                  'votes': _votes.text}
                 );
               },
             ),
