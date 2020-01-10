@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "435456075075",
+    "firebase_url": "https://makanapps-5884f.firebaseio.com",
+    "project_id": "makanapps-5884f",
+    "storage_bucket": "makanapps-5884f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:435456075075:android:e55785a02f52646c4cbbf6",
+        "android_client_info": {
+          "package_name": "kerul.net.makanapps"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "435456075075-47itttn1a946hli2hc615pdeo73hbm1b.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBhY-zM0X4ODIIRlk3jhHV_dwwG58CktQQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "435456075075-47itttn1a946hli2hc615pdeo73hbm1b.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
