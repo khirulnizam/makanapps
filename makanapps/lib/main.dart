@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'insertpage.dart';
+import 'updatepage.dart';
 
 void main() => runApp(MyApp());
 
@@ -20,6 +21,7 @@ class MyApp extends StatelessWidget {
       home: MyHomePage(),
       routes: <String, WidgetBuilder>{
         '/insertpage' : (BuildContext context) => new InsertPage(),
+        '/updatepage' : (BuildContext context) => new UpdatePage(),
       },
 
     );
@@ -85,10 +87,11 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
         child: ListTile(
           title: Text(record.name),
+          leading: Icon(Icons.fastfood),
           subtitle: Text("Price: RM"+record.price.toString()),
           trailing: Text(record.votes.toString()),
             onTap: () => record.reference.updateData({'votes': record.votes + 1}),
-            //onLongPress: ()=>,//will call update page
+            onLongPress: ()=>Navigator.of(context).pushNamed('/updatepage'),//will call update page
         ),
       ),
     );
@@ -98,7 +101,7 @@ class _MyHomePageState extends State<MyHomePage> {
 class Record {
   final String name;
   final int votes;
-  final int price;
+  final double price;
   final DocumentReference reference;
 
   Record.fromMap(Map<String, dynamic> map, {this.reference})

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:toast/toast.dart';
 
-class InsertPage extends StatelessWidget {
+class UpdatePage extends StatelessWidget {
 
   final db = Firestore.instance;
   TextEditingController _name = TextEditingController();
@@ -14,7 +14,7 @@ class InsertPage extends StatelessWidget {
   Widget build(BuildContext context){
     //our code
     return Scaffold(
-      appBar: new AppBar(title: new Text('Insert Menu '
+      appBar: new AppBar(title: new Text('Update Menu '
           'Page'),),
       body: ListView(
         padding: EdgeInsets.all(12.0),
@@ -43,32 +43,19 @@ class InsertPage extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.all(10.0),
             child: RaisedButton(
-              child: Text('Add'),
+              child: Text('Update'),
               color: Colors.green,
               onPressed: () async {
                 //auto-id provided by firestore
                 await db.collection('makanplace')
-                .add({'name': _name.text,
+                    .add({'name': _name.text,
                   'price': double.parse(_price.text.toString()),
                   'votes': int.parse(_votes.text.toString())});
                 Toast.show("Firebase add", context, duration: Toast.LENGTH_LONG, gravity:  Toast.CENTER);
               },
             ),
           ),
-          SizedBox(height: 15.0),
-          StreamBuilder<QuerySnapshot>(
-              stream: db.collection('makanplace').snapshots(),
-              builder: (context, snapshot) {
-                if (snapshot.hasData) {
-                  return Column(
-                    children: snapshot.data.documents.map((doc) {
-                      return ListTile(title: Text(doc.data['name']));
-                    }).toList(),
-                  );
-                } else {
-                  return SizedBox();
-                }
-              }),
+
         ],
       ),
     );
