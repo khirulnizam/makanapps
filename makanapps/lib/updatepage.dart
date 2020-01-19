@@ -14,7 +14,7 @@ class UpdatePage extends StatelessWidget {
   Widget build(BuildContext context){
     //our code
     return Scaffold(
-      appBar: new AppBar(title: new Text('Update Menu '
+      appBar: new AppBar(title: new Text('Update/Delete Menu '
           'Page'),),
       body: ListView(
         padding: EdgeInsets.all(12.0),
@@ -40,7 +40,7 @@ class UpdatePage extends StatelessWidget {
               decoration: InputDecoration(hintText: 'initial vote'),
             ),
           ),
-          Padding(
+          Padding(//padding for update button
             padding: const EdgeInsets.all(10.0),
             child: RaisedButton(
               child: Text('Update'),
@@ -54,8 +54,22 @@ class UpdatePage extends StatelessWidget {
                 Toast.show("Firebase add", context, duration: Toast.LENGTH_LONG, gravity:  Toast.CENTER);
               },
             ),
-          ),
-
+          ), //for update button
+          Padding(//padding for delete button
+            padding: const EdgeInsets.all(10.0),
+            child: RaisedButton(
+              child: Text('Delete!'),
+              color: Colors.red,
+              onPressed: () async {
+                //auto-id provided by firestore
+                await db.collection('makanplace')
+                    .add({'name': _name.text,
+                  'price': double.parse(_price.text.toString()),
+                  'votes': int.parse(_votes.text.toString())});
+                Toast.show("Firebase add", context, duration: Toast.LENGTH_LONG, gravity:  Toast.CENTER);
+              },
+            ),
+          ), //for update button
         ],
       ),
     );
