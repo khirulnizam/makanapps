@@ -85,8 +85,10 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
         child: ListTile(
           title: Text(record.name),
+          subtitle: Text("Price: RM"+record.price.toString()),
           trailing: Text(record.votes.toString()),
             onTap: () => record.reference.updateData({'votes': record.votes + 1}),
+            //onLongPress: ()=>,//will call update page
         ),
       ),
     );
@@ -96,17 +98,20 @@ class _MyHomePageState extends State<MyHomePage> {
 class Record {
   final String name;
   final int votes;
+  final int price;
   final DocumentReference reference;
 
   Record.fromMap(Map<String, dynamic> map, {this.reference})
       : assert(map['name'] != null),
         assert(map['votes'] != null),
+        assert(map['price'] != null),
         name = map['name'],
+        price = map['price'],
         votes = map['votes'];
 
   Record.fromSnapshot(DocumentSnapshot snapshot)
       : this.fromMap(snapshot.data, reference: snapshot.reference);
 
   @override
-  String toString() => "Record<$name:$votes>";
+  String toString() => "Record<$name:$price:$votes>";
 }
