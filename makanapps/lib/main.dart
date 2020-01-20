@@ -42,6 +42,7 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(title: Text('MakanApps Votes')),
       body: _buildBody(context),
 
+
       //flaoting button
         floatingActionButton: FloatingActionButton(
             onPressed: (){

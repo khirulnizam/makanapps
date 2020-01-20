@@ -18,6 +18,7 @@ class InsertPage extends StatelessWidget {
           'Page'),),
       body: ListView(
         padding: EdgeInsets.all(12.0),
+        //child: new Column(
         children: <Widget>[
           Padding(//TextField ID
             padding: EdgeInsets.symmetric(vertical: 10.0,horizontal: 15.0),
