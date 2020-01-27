@@ -2,8 +2,12 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'insertpage.dart';
 import 'updatepage.dart';
+import 'data.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 void main() => runApp(MyApp());
+
+Data datatopass;//define object from class
 
 final dummySnapshot = [
   {"name": "Nasi Goreng", "votes": 15},
@@ -21,7 +25,7 @@ class MyApp extends StatelessWidget {
       home: MyHomePage(),
       routes: <String, WidgetBuilder>{
         '/insertpage' : (BuildContext context) => new InsertPage(),
-        '/updatepage' : (BuildContext context) => new UpdatePage(),
+        '/updatepage' : (BuildContext context) => new UpdatePage(data:datatopass),
       },
 
     );
@@ -92,7 +96,28 @@ class _MyHomePageState extends State<MyHomePage> {
           subtitle: Text("Price: RM"+record.price.toString()),
           trailing: Text(record.votes.toString()),
             onTap: () => record.reference.updateData({'votes': record.votes + 1}),
-            onLongPress: ()=>Navigator.of(context).pushNamed('/updatepage'),//will call update page
+            onLongPress: (){
+              datatopass= Data(id: record.reference.documentID,
+                  name: record.name,
+                  votes: record.votes,
+                  price: record.price);
+              Fluttertoast.showToast(
+                  msg: "Selected record to update/delete: "+
+                      datatopass.id.toString()+
+                      " : "+datatopass.name,
+                  toastLength: Toast.LENGTH_SHORT,
+                  gravity: ToastGravity.BOTTOM,
+                  timeInSecForIos: 1,
+                  backgroundColor: Colors.red,
+                  textColor: Colors.white,
+                  fontSize: 16.0
+              );
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => UpdatePage(data: datatopass,)),
+              );
+            },//will call update page
         ),
       ),
     );
