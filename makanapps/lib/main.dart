@@ -9,14 +9,6 @@ void main() => runApp(MyApp());
 
 Data datatopass;//define object from class
 
-final dummySnapshot = [
-  {"name": "Nasi Goreng", "votes": 15},
-  {"name": "Ayam Kumnyit", "votes": 14},
-  {"name": "Ratatuile", "votes": 11},
-  {"name": "Kangkung Masin", "votes": 10},
-  {"name": "Kailan Goreng", "votes": 1},
-];
-
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
