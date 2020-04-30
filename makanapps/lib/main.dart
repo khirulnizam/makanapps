@@ -4,6 +4,7 @@ import 'insertpage.dart';
 import 'updatepage.dart';
 import 'data.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 void main() => runApp(MyApp());
 
@@ -35,7 +36,29 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('MakanApps Votes')),
+      appBar: AppBar(title: Text('MakanApps Votes'),
+        actions: <Widget>[
+            // action button
+            IconButton(
+            icon:Icon(IconData(59486, fontFamily: 'MaterialIcons')),
+              onPressed: () {
+
+                if(FirebaseAuth.instance.currentUser() != null){
+                  // wrong call in wrong place!
+                  Navigator.of(context).pushReplacementNamed('/loginpage');
+                }else{
+                  //display auth username
+                }
+              },//onPressed
+            ),
+            // action button
+            IconButton(icon: Icon(IconData(59405, fontFamily: 'MaterialIcons')),
+              onPressed: () {
+              //share icon
+              },
+            ),
+          ]
+      ),
       body: _buildBody(context),
 
 
